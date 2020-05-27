@@ -75,7 +75,19 @@ function mortgageCalculator (principal, interestRate, years) {
 Then, add control flow within your function such that IF creditScore is above 740, interest rate drops by 0.5%, if credit score is below 660, interest rate increases by 0.5% and if credit score is anywhere between 660 and 740 interest rate doesn't change.
 */
 
+function mortgageCalculator (principal, interestRate, years, creditScore) {
 
+    if (creditScore > 740) {interestRate = interestRate - 0.005}
+    else if (creditScore < 660) {interestRate = interestRate + 0.005}
+    
+    const numerator2 = (interestRate/12) * (Math.pow((1 + (interestRate/12)), (years*12)));
+    const denominator2 = (Math.pow((1 + (interestRate/12)), (years*12)))-1;
+    
+      return (principal*(numerator2/denominator2)).toFixed(2)
+     
+    }
+    
+    mortgageCalculator(200000, 0.05, 30, 700)
 
 
 // 🏡 Task 6: Loops
@@ -93,7 +105,20 @@ For example, variableInterestRate(200000, 0.04, 30) should console.log:
 "{Name}, with an interest rate of 0.055, your monthly rate is $1136"
 "{Name}, with an interest rate of 0.06, your monthly rate is $1199"
 */
-
+function variableInterestRate (principal, interestRate, years) {
+    for (let i = 0; i < 10; i++) {
+    const numerator2 = (interestRate/12) * (Math.pow((1 + (interestRate/12)), (years*12)));
+    const denominator2 = (Math.pow((1 + (interestRate/12)), (years*12)))-1; 
+    let monthlyRate = (principal * (numerator2/denominator2)).toFixed(2);
+  
+    let varIR = ((name) + (", with an Interest Rate of ") + (interestRate.toFixed(3)) + (", your monthly rate is $") + (monthlyRate));
+  
+    console.log (varIR); 
+    interestRate = (interestRate + .005)
+    }
+  }
+  
+  variableInterestRate(200000, 0.02, 30)
 
 
 
